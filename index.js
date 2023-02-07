@@ -8,7 +8,7 @@ fetch("http://localhost:3000/tools")
 .then(response => response.json())
 .then( (someData) => {
   
-  //make the json data usable in this funciton
+  //makes the json data usable in this funciton
   const arrayOfToolObjects = someData
   toolCollectionDiv.innerHTML = ""
   
@@ -30,7 +30,7 @@ fetch("http://localhost:3000/tools")
   for (k = 0; k < arrayOfToolObjects.length; k++) {
     nameNumberArray.push(`${arrayOfToolObjects[k].name} : ${arrayOfToolObjects[k].id} : ${arrayOfToolObjects[k].phonenumber}`)
   }
-
+console.log(nameNumberArray)
   //creates a card for each tool with a name, image, availability status, and has a mouseover event listener
   arrayOfToolObjects.map(  
     
