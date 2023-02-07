@@ -13,7 +13,7 @@ Instead of a tool library that would require a physical space to store available
     The app fetches all the tools from db.json and renders them into individual "cards."
     Each card shows the tool's name, an image of the tool, and it's availability status; either "Available" or "Reserved."
     A dropdown menu is populated with the names of only the tools with the status "Available."
-    Hovering over a tool's card with make a description appear.
+    Hovering over a tool's card will make a description appear.
 
 <b>Reserving a tool:</b><br>
     To reserve a tool, select the desired tool from the dropdown menu, and click the "Reserve Tool" button.
