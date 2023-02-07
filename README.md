@@ -1,10 +1,10 @@
-<h1>Community Tool-Share<h1>
+<h1>Community Tool-Share</h1>
 
 This web app is a community tool-share.  Tools are expensive, and sometimes a single use does not justify a purchase. 
-
-"Somebody nearby must have this specialty tool.  If only there was a way to borrow one!"<br>
-"I've got this really useful tool that just sits dormant.  And I bet somebody nearby could get some use out of it."
-
+<ul>
+<li>"Somebody nearby must have this specialty tool.  If only there was a way to borrow one!"</li><br>
+<li>"I've got this really useful tool that just sits dormant.  And I bet somebody nearby could get some use out of it."</li>
+</ul>
 Instead of a tool library that would require a physical space to store available tools, this app would show tools that people own that they have made available to the community to borrow.  This app lets people submit tools that they want to allow people to borrow, and lets people reserve one that is available.
 
 Functionality - 
