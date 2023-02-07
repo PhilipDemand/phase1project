@@ -1,0 +1,52 @@
+{
+  "tools": [
+    {
+      "id": 1,
+      "name": "Framing Hammer",
+      "image": "https://m.media-amazon.com/images/I/619Yfec0mpL._AC_SL1500_.jpg",
+      "availability": "Available",
+      "phonenumber": "860-555-1111",
+      "useDescription": "For heavy wood construction and concrete framework"
+    },
+    {
+      "id": 2,
+      "name": "Circular Saw",
+      "image": "https://i.ebayimg.com/images/g/r0YAAOSwArljWT0U/s-l640.jpg",
+      "availability": "Available",
+      "phonenumber": "860-555-2222",
+      "useDescription": "Powered hand-saw for ripping or cross-cutting materials in a straight line"
+    },
+    {
+      "id": 3,
+      "name": "Cordless Drill",
+      "image": "https://cdn.vox-cdn.com/thumbor/D3pEdIdOS-jbP16r2Tok2lYgQtU=/0x0:2400x3316/1200x0/filters:focal(0x0:2400x3316):no_upscale()/cdn.vox-cdn.com/uploads/chorus_asset/file/23358180/0122_WS_Tool_Lab_R86115_2V7_Final.jpg",
+      "availability": "Available",
+      "phonenumber": "860-555-3333",
+      "useDescription": "For drilling round holes or driving fasteners"
+    },
+    {
+      "id": 4,
+      "name": "Miter Saw",
+      "image": "https://i.ebayimg.com/images/g/tVcAAOSwhn5dMFQH/s-l1600.jpg",
+      "availability": "Available",
+      "phonenumber": "860-555-4444",
+      "useDescription": "For making cross-cuts at a variety of angles"
+    },
+    {
+      "id": 5,
+      "name": "Hammer Drill",
+      "image": "https://hw.menardc.com/main/items/media/99998/ProductLarge/241-0737.jpg",
+      "availability": "Available",
+      "phonenumber": "860-555-5555",
+      "useDescription": "For drilling in hard materials like stone, brickwork, or concrete"
+    },
+    {
+      "id": 6,
+      "name": "Air Compressor",
+      "image": "https://m.media-amazon.com/images/I/71h8CZ1l2ZL.jpg",
+      "availability": "Available",
+      "phonenumber": "860-555-6666",
+      "useDescription": "Powers air-tools like impact wrenches, nail guns, air-chisels, etc."
+    }
+  ]
+}

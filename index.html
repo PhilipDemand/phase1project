@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Community Tool-Share</title>
+    <link rel="stylesheet" type="text/css" href="index.css" />
+</head>
+<body>
+    <div id="tool-header">
+        <h1>Community Tool-Share</h1>
+    </div>
+    <div id="drop-down">
+        <h2>Need a Tool?</h2>
+        <label for="select-tools">Select a tool</label>
+            <select id="selectToolMenu">
+                <option value="">-- Select Tool -- </option>
+            </select>
+            <button id="reserveToolButton">Reserve Tool</button>
+    </div>
+    <div id="right-side-div">
+        <h2>Have a Tool?</h2>
+        <form id="submitToolForm">
+            <label for="name">Name of Tool:</label>
+            <input type="text" id="tool-name" name="tool-name"><br><br>
+          
+            <label for="image-url">Image URL:</label>
+            <input type="text" id="img-url" name="img-url"><br><br>
+          
+            <label for="phone-number">Phone Number:</label>
+            <input type="text" id="phone-number" name="phone-number"><br><br>
+
+            <label for="use-description">Brief Description of tool's use:</label>
+            <input type="text" id="use-description" name="use-description"><br><br>
+          
+            <input type="submit" value="Submit Tool" class="submit-button">
+          </form>
+    </div>
+    <div id="tool-collection">
+      
+    </div>
+    <script defer type="text/javascript" src="index.js"></script>
+</body>
+</html>
