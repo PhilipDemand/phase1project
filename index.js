@@ -26,11 +26,11 @@ fetch("http://localhost:3000/tools")
     selectDropDown.add(option);
   }
 
-  //makes the name, id number, and phone number of each tool available in the global
+  //makes the name, id number, and phone number of each tool available in the global scope
   for (k = 0; k < arrayOfToolObjects.length; k++) {
     nameNumberArray.push(`${arrayOfToolObjects[k].name} : ${arrayOfToolObjects[k].id} : ${arrayOfToolObjects[k].phonenumber}`)
   }
-console.log(nameNumberArray)
+
   //creates a card for each tool with a name, image, availability status, and has a mouseover event listener
   arrayOfToolObjects.map(  
     
