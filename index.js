@@ -87,13 +87,14 @@ const selectButton = document.getElementById("reserveToolButton");
 })
   .then(response => response.json())
   .catch(error => console.error(error));
+  //re-renders all the tool cards and repopulates the dropdown menu
    fetchAndRenderTools()
   }
   );
 
   const submitForm = document.getElementById("submitToolForm");
 
-  //submit event listener
+  //submit event listener on the form
   submitForm.addEventListener("submit", function(e) {
     
     const formElements = e.target.elements;
@@ -125,5 +126,6 @@ const selectButton = document.getElementById("reserveToolButton");
       body: JSON.stringify(submittedObject)
     })
     .then(response => response.json())
+    //re-renders all the tool cards and re-pupulates the dropdown menu
     .then( () => fetchAndRenderTools())
   })
