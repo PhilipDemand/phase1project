@@ -12,11 +12,6 @@ body {
     padding: 1rem;
   }
   
-  #tool-header img {
-    height: 6rem;
-    width: auto;
-  }
-  
   #tool-collection {
     margin: 2rem;
   }
