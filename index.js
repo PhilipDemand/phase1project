@@ -60,7 +60,11 @@ const selectButton = document.getElementById("reserveToolButton");
     let last12 = filteredArray[0].substr(filteredArray[0].length - 12);
     alert(`You have successfully reserved a ${selectDropDown.value}\nPlease call ${last12} to arrange a pickup and dropoff`);
     
-    let filteredId = filteredArray[0].charAt(filteredArray[0].length - 16);
+    const start = filteredArray[0].indexOf(":") + 1;
+    const end = filteredArray[0].lastIndexOf(":");
+    const filteredId = parseInt(filteredArray[0].slice(start, end));
+
+    //let filteredId = filteredArray[0].charAt(filteredArray[0].length - 16);
     
     fetch(`http://localhost:3000/tools/${filteredId}`, {
     method: 'PATCH',
