@@ -5,9 +5,9 @@ This web app is a community tool-share.  Tools are expensive, and sometimes a si
 <li>"Somebody nearby must have this specialty tool.  If only there was a way to borrow one!"</li><br>
 <li>"I've got this really useful tool that just sits dormant.  And I bet somebody nearby could get some use out of it."</li>
 </ul>
-Instead of a tool library that would require a physical space to store available tools, this app would show tools that people own that they have made available to the community to borrow.  This app lets people submit tools that they want to allow people to borrow, and lets people reserve one that is available.<br>
+Instead of a tool library that would require a physical space to store available tools, this app would show tools that people own that they have made available to the community to borrow.  This app lets people submit tools that they want to allow people to borrow, and lets people reserve one that is available.<br><br>
 
-Functionality - 
+<h2>Functionality - </h2>
 
 <b>Upon visiting:</b><br>
     The app fetches all the tools from db.json and renders them into individual "cards."
