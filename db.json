@@ -12,7 +12,7 @@
       "id": 2,
       "name": "Circular Saw",
       "image": "https://i.ebayimg.com/images/g/r0YAAOSwArljWT0U/s-l640.jpg",
-      "availability": "Reserved",
+      "availability": "Available",
       "phonenumber": "860-555-2222",
       "useDescription": "Powered hand-saw for ripping or cross-cutting materials in a straight line"
     },
@@ -47,14 +47,6 @@
       "availability": "Available",
       "phonenumber": "860-555-6666",
       "useDescription": "Powers air-tools like impact wrenches, nail guns, air-chisels, etc."
-    },
-    {
-      "name": "Table Saw",
-      "image": "https://hw.menardc.com/main/items/media/POSIT002/ProductLarge/SS7203.jpg",
-      "availability": "Reserved",
-      "phonenumber": "860-555-9999",
-      "useDescription": "For cross-cutting and ripping panels that uses a fence to distance the blade from material's edge",
-      "id": 7
     }
   ]
 }
