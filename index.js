@@ -31,7 +31,7 @@ fetch("http://localhost:3000/tools")
     nameNumberArray.push(`${arrayOfToolObjects[k].name} : ${arrayOfToolObjects[k].id} : ${arrayOfToolObjects[k].phonenumber}`)
   }
 
-  //creates a card for each tool
+  //creates a card for each tool with a name, image, availability status, and has a mouseover event listener
   arrayOfToolObjects.map(  
     
     (eachToolObject)=>{
@@ -65,16 +65,17 @@ const selectButton = document.getElementById("reserveToolButton");
   selectButton.addEventListener("click", function() {
     const item = selectDropDown.value
     
+    //finds the part of nameNumberArray that has a name that matches what's selected in the dropdown
     const filteredArray = nameNumberArray.filter(string => string.includes(item));
     let last12 = filteredArray[0].substr(filteredArray[0].length - 12);
     alert(`You have successfully reserved a ${selectDropDown.value}\nPlease call ${last12} to arrange a pickup and dropoff`);
     
+    //gets the ID number of the selected tool from the dropdown so that it can be part of the PATCH fetch URL
     const start = filteredArray[0].indexOf(":") + 1;
     const end = filteredArray[0].lastIndexOf(":");
     const filteredId = parseInt(filteredArray[0].slice(start, end));
-
-    //let filteredId = filteredArray[0].charAt(filteredArray[0].length - 16);
     
+    //changes the selected tool's availability value in the db.json to "Reserved"
     fetch(`http://localhost:3000/tools/${filteredId}`, {
     method: 'PATCH',
     headers: {
@@ -92,10 +93,12 @@ const selectButton = document.getElementById("reserveToolButton");
 
   const submitForm = document.getElementById("submitToolForm");
 
+  //submit event listener
   submitForm.addEventListener("submit", function(e) {
     
     const formElements = e.target.elements;
 
+    //prevents the form from submitting if nothing is on it
     for (let i = 0; i < formElements.length; i++) {
       if (!formElements[i].value) {
         e.preventDefault();
@@ -103,6 +106,7 @@ const selectButton = document.getElementById("reserveToolButton");
       }
     }
    
+    //creates an object to get POSTed from the information typed in on the form
     const submittedObject = {
       name:e.target[0].value, 
       image:e.target[1].value,
@@ -111,6 +115,7 @@ const selectButton = document.getElementById("reserveToolButton");
       useDescription:e.target[3].value
     }
 
+    //posts the object
     fetch("http://localhost:3000/tools", {
       method: "POST", 
       headers: {
