@@ -67,7 +67,7 @@ const selectButton = document.getElementById("reserveToolButton");
     
     //finds the part of nameNumberArray that has a name that matches what's selected in the dropdown
     const filteredArray = nameNumberArray.filter(string => string.includes(item));
-    let last12 = filteredArray[0].substr(filteredArray[0].length - 12);
+    const last12 = filteredArray[0].substr(filteredArray[0].length - 12);
     alert(`You have successfully reserved a ${selectDropDown.value}\nPlease call ${last12} to arrange a pickup and dropoff`);
     
     //gets the ID number of the selected tool from the dropdown so that it can be part of the PATCH fetch URL
