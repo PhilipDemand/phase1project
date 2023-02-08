@@ -31,7 +31,7 @@ fetch("http://localhost:3000/tools")
     nameNumberArray.push(`${arrayOfToolObjects[k].name} : ${arrayOfToolObjects[k].id} : ${arrayOfToolObjects[k].phonenumber}`)
   }
 
-  //creates a card for each tool with a name, image, availability status, and has a mouseover event listener
+  //creates a div for each tool with a name, image, availability status, and has a mouseover event listener which forms a "card"
   arrayOfToolObjects.map(  
     
     (eachToolObject)=>{
