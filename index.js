@@ -2,22 +2,22 @@ const toolCollectionDiv = document.querySelector("#tool-collection")
 const selectDropDown = document.getElementById("selectToolMenu");
 const nameNumberArray = []
 
-// fetch tools from db.json and render each one into it's own card
+
 function fetchAndRenderTools () {
 fetch("http://localhost:3000/tools")
 .then(response => response.json())
 .then( (someData) => {
   
-  //makes the json data usable in this funciton
+  
   const arrayOfToolObjects = someData
   toolCollectionDiv.innerHTML = ""
   
-  //creates an array of the tools that have the status of "Available"
+ 
   const justAvailableNames = arrayOfToolObjects.filter(status => status.availability === "Available");
-  //takes the complete tool from justAvailableNames and makes it into an array of just the names of the tools
+  
   const namesArray = justAvailableNames.map(each => each.name);
   
- //populate the dropdown menu with the names of the available tools
+ 
   selectDropDown.innerHTML = "";
   for (var j = 0; j < namesArray.length; j++) {
     let option = document.createElement("option");
@@ -26,12 +26,12 @@ fetch("http://localhost:3000/tools")
     selectDropDown.add(option);
   }
 
-  //makes the name, id number, and phone number of each tool available in the global scope
+  
   for (k = 0; k < arrayOfToolObjects.length; k++) {
     nameNumberArray.push(`${arrayOfToolObjects[k].name} : ${arrayOfToolObjects[k].id} : ${arrayOfToolObjects[k].phonenumber}`)
   }
 
-  //creates a div for each tool with a name, image, availability status, and has a mouseover event listener which forms a "card"
+  
   arrayOfToolObjects.map(  
     
     (eachToolObject)=>{
@@ -60,22 +60,22 @@ fetch("http://localhost:3000/tools")
   
 fetchAndRenderTools()
 
-//"click" event listener
+
 const selectButton = document.getElementById("reserveToolButton");
   selectButton.addEventListener("click", function() {
     const item = selectDropDown.value
     
-    //finds the part of nameNumberArray that has a name that matches what's selected in the dropdown
+   
     const filteredArray = nameNumberArray.filter(string => string.includes(item));
     const last12 = filteredArray[0].substr(filteredArray[0].length - 12);
     alert(`You have successfully reserved a ${selectDropDown.value}\nPlease call ${last12} to arrange a pickup and dropoff`);
     
-    //gets the ID number of the selected tool from the dropdown so that it can be part of the PATCH fetch URL
+    
     const start = filteredArray[0].indexOf(":") + 1;
     const end = filteredArray[0].lastIndexOf(":");
     const filteredId = parseInt(filteredArray[0].slice(start, end));
     
-    //changes the selected tool's availability value in the db.json to "Reserved"
+    
     fetch(`http://localhost:3000/tools/${filteredId}`, {
     method: 'PATCH',
     headers: {
@@ -87,19 +87,19 @@ const selectButton = document.getElementById("reserveToolButton");
 })
   .then(response => response.json())
   .catch(error => console.error(error));
-  //re-renders all the tool cards and repopulates the dropdown menu
+  
    fetchAndRenderTools()
   }
   );
 
   const submitForm = document.getElementById("submitToolForm");
 
-  //submit event listener on the form
+  
   submitForm.addEventListener("submit", function(e) {
     
     const formElements = e.target.elements;
 
-    //prevents the form from submitting if nothing is on it
+    
     for (let i = 0; i < formElements.length; i++) {
       if (!formElements[i].value) {
         e.preventDefault();
@@ -107,7 +107,7 @@ const selectButton = document.getElementById("reserveToolButton");
       }
     }
    
-    //creates an object to get POSTed from the information typed in on the form
+    
     const submittedObject = {
       name:e.target[0].value, 
       image:e.target[1].value,
@@ -116,7 +116,7 @@ const selectButton = document.getElementById("reserveToolButton");
       useDescription:e.target[3].value
     }
 
-    //posts the object
+    
     fetch("http://localhost:3000/tools", {
       method: "POST", 
       headers: {
@@ -126,6 +126,6 @@ const selectButton = document.getElementById("reserveToolButton");
       body: JSON.stringify(submittedObject)
     })
     .then(response => response.json())
-    //re-renders all the tool cards and re-pupulates the dropdown menu
+    
     .then( () => fetchAndRenderTools())
   })
