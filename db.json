@@ -47,6 +47,14 @@
       "availability": "Available",
       "phonenumber": "860-555-6666",
       "useDescription": "Powers air-tools like impact wrenches, nail guns, air-chisels, etc."
+    },
+    {
+      "name": "Backpack Blower",
+      "image": "https://images.thdstatic.com/productImages/018009cd-e60d-41d6-9429-a9338fcc69c8/svn/echo-gas-leaf-blowers-pb-265ln-64_600.jpg",
+      "availability": "Available",
+      "phonenumber": "860-555-9999",
+      "useDescription": "For blowing leaves and yard debris",
+      "id": 7
     }
   ]
 }

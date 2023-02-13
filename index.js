@@ -2,7 +2,6 @@ const toolCollectionDiv = document.querySelector("#tool-collection")
 const selectDropDown = document.getElementById("selectToolMenu");
 const nameNumberArray = []
 
-
 function fetchAndRenderTools () {
 fetch("http://localhost:3000/tools")
 .then(response => response.json())
