@@ -1,81 +1,70 @@
+let tools = []
 const toolCollectionDiv = document.querySelector("#tool-collection")
+
+function fetchTools() {
+    fetch("http://localhost:3000/tools")
+    .then(response => response.json())
+    .then( (someData) => {
+      tools.push(...someData)
+      renderToolCards()
+      fillDropDown()
+    })
+}
+
+fetchTools()
+
+function renderToolCards() {
+    toolCollectionDiv.innerHTML = ""
+    tools.map(renderToolCard)
+}
+
+function renderToolCard(toolObject) {
+  const divForToolCard = document.createElement("div")
+            divForToolCard.className = "card"
+          const h2ForToolCard = document.createElement("h2")
+            h2ForToolCard.textContent = toolObject.name
+          const imageForToolCard = document.createElement("img")
+            imageForToolCard.src = toolObject.image
+            imageForToolCard.className = "tool-avatar"
+           const pTagForToolCard = document.createElement("p")
+             pTagForToolCard.textContent = `${toolObject.availability}`
+           const pTagForDescription = document.createElement("p")
+             pTagForDescription.textContent = toolObject.useDescription
+             pTagForDescription.style.display = "none"
+          divForToolCard.addEventListener("mouseover", function() {
+           pTagForDescription.style.display = "block"
+          })
+          divForToolCard.addEventListener("mouseleave", function() {
+            pTagForDescription.style.display = "none"
+          })
+          divForToolCard.append(h2ForToolCard , imageForToolCard , pTagForToolCard, pTagForDescription)
+          toolCollectionDiv.append(divForToolCard)
+}
+
 const selectDropDown = document.getElementById("selectToolMenu");
-const nameNumberArray = []
-
-function fetchAndRenderTools () {
-fetch("http://localhost:3000/tools")
-.then(response => response.json())
-.then( (someData) => {
-  
-  
-  const arrayOfToolObjects = someData
-  toolCollectionDiv.innerHTML = ""
-  
- 
-  const justAvailableNames = arrayOfToolObjects.filter(status => status.availability === "Available");
-  
-  const namesArray = justAvailableNames.map(each => each.name);
-  
- 
+function fillDropDown(){
   selectDropDown.innerHTML = "";
-  for (var j = 0; j < namesArray.length; j++) {
-    let option = document.createElement("option");
-    option.text = namesArray[j];
-    option.value = namesArray[j];
-    selectDropDown.add(option);
-  }
-
-  
-  for (k = 0; k < arrayOfToolObjects.length; k++) {
-    nameNumberArray.push(`${arrayOfToolObjects[k].name} : ${arrayOfToolObjects[k].id} : ${arrayOfToolObjects[k].phonenumber}`)
-  }
-
-  
-  arrayOfToolObjects.map(  
-    
-    (eachToolObject)=>{
-      const divForToolCard = document.createElement("div")
-        divForToolCard.className = "card"
-      const h2ForToolCard = document.createElement("h2")
-        h2ForToolCard.textContent = eachToolObject.name
-      const imageForToolCard = document.createElement("img")
-        imageForToolCard.src = eachToolObject.image
-        imageForToolCard.className = "tool-avatar"
-       const pTagForToolCard = document.createElement("p")
-         pTagForToolCard.textContent = `${eachToolObject.availability}`
-         const pTagForDescription = document.createElement("p")
-         pTagForDescription.textContent = eachToolObject.useDescription
-         pTagForDescription.style.display = "none"
-      divForToolCard.addEventListener("mouseover", function() {
-       pTagForDescription.style.display = "block"
-      })
-      divForToolCard.addEventListener("mouseleave", function() {
-        pTagForDescription.style.display = "none"
-      })
-      divForToolCard.append(h2ForToolCard , imageForToolCard , pTagForToolCard, pTagForDescription)
-
-      toolCollectionDiv.append(divForToolCard)
-  })})}
-  
-fetchAndRenderTools()
-
+  tools.map(
+    (eachNameObject)=>{
+      if(eachNameObject.availability === "Available") {
+        const option = document.createElement("option");
+        option.text = eachNameObject.name;
+        option.value = eachNameObject.name;
+        selectDropDown.add(option);
+      }
+    }
+  )  
+}
 
 const selectButton = document.getElementById("reserveToolButton");
-  selectButton.addEventListener("click", function() {
+selectButton.addEventListener("click", function() {
     const item = selectDropDown.value
-    
+    const resultObject = tools.find(obj => {
+        return Object.values(obj).some(name => name === item);
+      });
+    alert(`You have successfully reserved a ${item}\nPlease call ${resultObject.phonenumber} to arrange a pickup and dropoff`);
    
-    const filteredArray = nameNumberArray.filter(string => string.includes(item));
-    const last12 = filteredArray[0].substr(filteredArray[0].length - 12);
-    alert(`You have successfully reserved a ${selectDropDown.value}\nPlease call ${last12} to arrange a pickup and dropoff`);
-    
-    
-    const start = filteredArray[0].indexOf(":") + 1;
-    const end = filteredArray[0].lastIndexOf(":");
-    const filteredId = parseInt(filteredArray[0].slice(start, end));
-    
-    
-    fetch(`http://localhost:3000/tools/${filteredId}`, {
+    fetch(`http://localhost:3000/tools/${resultObject.id}`, {
     method: 'PATCH',
     headers: {
     'Content-Type': 'application/json'
@@ -85,38 +74,32 @@ const selectButton = document.getElementById("reserveToolButton");
   })
 })
   .then(response => response.json())
-  .catch(error => console.error(error));
-  
-   fetchAndRenderTools()
+  .then(updatedTool => {
+    tools = tools.map(tool => {
+      if (tool.id === updatedTool.id) {
+        return updatedTool
+      } else {
+        return tool
+      }
+    })
+    renderToolCards()
+    fillDropDown()
+  })
+  .catch(error => console.error(error))
   }
   );
 
   const submitForm = document.getElementById("submitToolForm");
-
-  
-  submitForm.addEventListener("submit", function(e) {
-    
-    const formElements = e.target.elements;
-
-    
-    for (let i = 0; i < formElements.length; i++) {
-      if (!formElements[i].value) {
-        e.preventDefault();
-        return;
-      }
-    }
-   
-    
+  submitForm.addEventListener("submit", function(e) { 
+    e.preventDefault()
     const submittedObject = {
-      name:e.target[0].value, 
-      image:e.target[1].value,
-      availability:"Available",
-      phonenumber:e.target[2].value,
-      useDescription:e.target[3].value
-    }
-
-    
-    fetch("http://localhost:3000/tools", {
+        name:e.target[0].value, 
+        image:e.target[1].value,
+        availability:"Available",
+        phonenumber:e.target[2].value,
+        useDescription:e.target[3].value
+      }
+      fetch("http://localhost:3000/tools", {
       method: "POST", 
       headers: {
         "Content-Type": "application/json", 
@@ -125,6 +108,10 @@ const selectButton = document.getElementById("reserveToolButton");
       body: JSON.stringify(submittedObject)
     })
     .then(response => response.json())
-    
-    .then( () => fetchAndRenderTools())
-  })
+    .then(newTool => {
+      tools = [...tools, newTool]
+        renderToolCard(newTool)
+        fillDropDown()
+      })
+  }
+  )
